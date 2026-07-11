@@ -6,13 +6,22 @@
   <title>Streech Editor</title>
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./loading.css">
+  <script>
+    // ⏳ 強制ロード画面解除セーフティ（3秒経ったら何が起きても強制的に画面を表示する）
+    setTimeout(function() {
+      var screen = document.getElementById('loading-screen');
+      if (screen && !screen.classList.contains('fade-out')) {
+        screen.classList.add('fade-out');
+        console.warn("Safety trigger: Forced loading screen removal after 3 seconds.");
+      }
+    }, 3000);
+  </script>
 </head>
 <body>
 
   <!-- ⏳ 本家風ロード画面（指定のグリーン #00d631） -->
   <div id="loading-screen">
     <div class="loading-animation-container">
-      <!-- JavaScriptから制御できるように正確にidを割り振っています -->
       <div id="load-block-1" class="loading-block"></div>
       <div id="load-block-2" class="loading-block"></div>
     </div>
