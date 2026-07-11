@@ -11,7 +11,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const inputSize = document.querySelector('.asset-info-bar .info-item:nth-child(4) .info-input');
     const inputDir = document.querySelector('.asset-info-bar .info-item:nth-child(5) .info-input');
 
-    const stageSprite = document.querySelector('.sprite-mock-cat');
+    // 🛠️ 新しいアセットコンテナと半透明バッジの要素を取得
+    const spriteContainer = document.getElementById('active-sprite-container');
+    const nameBadge = document.querySelector('.sprite-name-badge');
 
     const allInputs = document.querySelectorAll('.asset-info-bar .info-input');
     allInputs.forEach(input => {
@@ -19,10 +21,11 @@ window.addEventListener('DOMContentLoaded', () => {
       input.style.pointerEvents = 'auto';
     });
 
+    // 🛠️ 名前のリアルタイム更新処理（半透明バッジと連動）
     if (inputName) {
       inputName.addEventListener('input', (e) => {
         const newName = e.target.value;
-        if (stageSprite) stageSprite.textContent = newName;
+        if (nameBadge) nameBadge.textContent = newName;
         const currentActiveCard = document.querySelector('.asset-card.active span');
         if (currentActiveCard) currentActiveCard.textContent = newName;
       });
@@ -30,7 +33,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     if (inputX || inputY || inputSize || inputDir) {
       const updateSpriteStyle = () => {
-        if (!stageSprite) return;
+        if (!spriteContainer) return;
         const x = inputX && inputX.value !== '' ? parseFloat(inputX.value) : 0;
         const y = inputY && inputY.value !== '' ? parseFloat(inputY.value) : 0;
         const size = inputSize && inputSize.value !== '' ? parseFloat(inputSize.value) : 100;
@@ -41,8 +44,8 @@ window.addEventListener('DOMContentLoaded', () => {
         const scale = size / 100;
         const rotateDeg = dir - 90;
 
-        stageSprite.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale}) rotate(${rotateDeg}deg)`;
-        stageSprite.style.transition = 'transform 0.1s ease-out';
+        spriteContainer.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale}) rotate(${rotateDeg}deg)`;
+        spriteContainer.style.transition = 'transform 0.1s ease-out';
       };
 
       if (inputX) inputX.addEventListener('input', updateSpriteStyle);
@@ -89,21 +92,31 @@ window.addEventListener('DOMContentLoaded', () => {
         if (inputSize) inputSize.value = 100;
         if (inputDir) inputDir.value = 90;
         
-        if (stageSprite) {
-          stageSprite.style.transform = `translate(0px, 0px) scale(1) rotate(0deg)`;
+        if (spriteContainer) {
+          spriteContainer.style.transform = `translate(0px, 0px) scale(1) rotate(0deg)`;
         }
       });
     }
 
+    // 🛠️ スプライトカード切り替え時の見た目出し分けロジック
     const assetCards = document.querySelectorAll('.asset-card');
-    assetCards.forEach(card => {
+    assetCards.forEach((card, index) => {
       card.addEventListener('click', () => {
         assetCards.forEach(c => c.classList.remove('active'));
         card.classList.add('active');
 
         const cardName = card.querySelector('span').textContent;
         if (inputName) inputName.value = cardName;
-        if (stageSprite) stageSprite.textContent = cardName;
+        if (nameBadge) nameBadge.textContent = cardName;
+
+        // 🛠️ インデックス（順番）に応じて、スプライト1（画像）とスプライト2（点線モック）の表示スタイルを切り替える
+        if (spriteContainer) {
+          if (index === 0) {
+            spriteContainer.className = 'view-sprite1'; // スプライト1の見た目（画像＋半透明バッジ）
+          } else {
+            spriteContainer.className = 'view-sprite2'; // スプライト2の見た目（従来の点線枠）
+          }
+        }
       });
     });
 
