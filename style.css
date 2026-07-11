@@ -1,0 +1,48 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #f9f9f9; color: #575e75; height: 100vh; display: flex; flex-direction: column; overflow: hidden; user-select: none; }
+
+header { height: 48px; background: #00d631; padding: 0 12px; display: flex; align-items: center; justify-content: space-between; font-size: 0.85rem; font-weight: bold; color: white; }
+.header-left { display: flex; align-items: center; gap: 16px; height: 100%; }
+.logo-container { height: 26px; display: flex; align-items: center; }
+.logo-image { height: 100%; width: auto; object-fit: contain; }
+.menu-item { cursor: pointer; padding: 0 8px; display: flex; align-items: center; height: 100%; transition: background 0.1s; }
+.menu-item:hover { background: rgba(0, 0, 0, 0.1); }
+
+#main-container { display: flex; flex: 1; height: calc(100vh - 48px); background: #eff3f8; overflow: hidden; }
+#blockly-section { flex: 1; height: 100%; border-right: 1.5px solid #d9d9d9; border-left: 1px solid #d9d9d9; position: relative; }
+
+#sidebar-section { width: 482px; height: 100%; display: flex; flex-direction: column; background: #eff3f8; padding: 12px; gap: 12px; }
+.stage-header { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 32px; padding: 0 4px; }
+.control-bar { display: flex; align-items: center; gap: 6px; }
+.control-btn { background: none; border: none; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 4px; transition: background 0.1s; }
+.control-btn:hover { background: rgba(0,0,0,0.05); }
+
+.control-btn svg { width: 24px; height: 24px; }
+#run-btn svg { fill: #4cbf56; }
+#pause-btn svg { fill: #ffb100; }
+#stop-btn svg { fill: #ff4c4c; }
+.debug-image { width: 22px; height: 22px; object-fit: contain; }
+
+#run-btn.active { background: rgba(76, 191, 86, 0.15); border-radius: 50%; }
+#pause-btn.active { background: rgba(255, 177, 0, 0.15); border-radius: 50%; }
+#debug-btn.active { background: rgba(0, 0, 0, 0.08); }
+
+#stage-area { width: 458px; height: 361px; background: white; border: 1px solid #d9d9d9; border-radius: 4px; display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0px 1px 3px rgba(0,0,0,0.05); }
+#canvas-mock { width: 100%; height: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+.sprite-mock-cat { width: 64px; height: 64px; border: 1.5px dashed #4c97ff; border-radius: 4px; background: rgba(76, 151, 255, 0.05); display: flex; align-items: center; justify-content: center; color: #4c97ff; font-size: 0.7rem; font-weight: bold; }
+
+#asset-manager { flex: 1; background: white; border: 1px solid #d9d9d9; border-radius: 4px; display: flex; flex-direction: column; overflow: hidden; }
+.asset-info-bar { height: 50px; border-bottom: 1px solid #e9e9e9; background: #f9f9f9; display: flex; align-items: center; padding: 0 12px; font-size: 0.75rem; color: #575e75; gap: 14px; }
+.info-item { display: flex; align-items: center; gap: 4px; }
+.info-input { width: 45px; height: 24px; border: 1px solid #d9d9d9; border-radius: 12px; text-align: center; background: white; color: #575e75; font-size: 0.75rem; font-weight: bold; pointer-events: none; }
+
+.manager-panes { display: flex; flex: 1; overflow: hidden; }
+.sprites-pane { flex: 1; padding: 12px; display: flex; flex-wrap: wrap; gap: 12px; overflow-y: auto; background: #fff; align-content: flex-start; }
+.asset-card { width: 72px; height: 84px; background: white; border: 1px solid #d9d9d9; border-radius: 8px; cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 6px; font-size: 0.7rem; font-weight: bold; color: #575e75; transition: all 0.1s; }
+.asset-card:hover { border-color: #4c97ff; }
+.asset-card.active { border-color: #4c97ff; background: rgba(76, 151, 255, 0.05); }
+.asset-icon-placeholder { width: 46px; height: 46px; border-radius: 4px; background: #f9f9f9; border: 1px solid #eee; }
+
+.stage-pane { width: 84px; border-left: 1px solid #e9e9e9; background: #f9f9f9; display: flex; flex-direction: column; align-items: center; padding-top: 12px; gap: 6px; font-size: 0.65rem; font-weight: bold; }
+.stage-card { width: 64px; height: 74px; background: white; border: 1px solid #d9d9d9; border-radius: 8px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 6px; }
+.stage-icon-placeholder { width: 42px; height: 42px; background: #f0f0f0; border-radius: 4px; }
