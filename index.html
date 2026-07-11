@@ -12,20 +12,52 @@
   <header>
     <div class="header-left">
       <div class="logo-container">
+        <!-- 🛠️ ロゴ画像のパスを ./streechlogo.svg に修正 -->
         <img src="./streechlogo.svg" alt="Streech" class="logo-image">
       </div>
       <div class="menu-item">ファイル</div>
       <div class="menu-item">編集</div>
       <div class="menu-item">チュートリアル</div>
     </div>
+    
+    <div class="header-right">
+      <button id="debug-btn" class="nav-debug-btn" title="デバッグモード起動">
+        <!-- 🛠️ デバッグ画像のパスを ./debug.svg に修正 -->
+        <img src="./debug.svg" alt="Debug" class="nav-debug-img">
+        <span>デバッグ</span>
+      </button>
+    </div>
   </header>
 
   <!-- メインエディタ領域（本家Scratchと全く同じ3分割レイアウト） -->
   <div id="main-container">
     
-    <!-- 左側＆中央：プログラムワークスペース -->
+    <!-- 🧱 自作のプログラミングブロック領域（左側：パレット、右側：ワークスペース） -->
     <section id="blockly-section">
-      <div id="blocklyDiv"></div>
+      <div class="block-palette">
+        <div class="palette-header">動き</div>
+        
+        <div class="streech-block block-motion" draggable="true">
+          <span>歩動かす</span>
+          <input type="text" class="block-input" value="10" size="2">
+        </div>
+
+        <div class="streech-block block-motion" draggable="true">
+          <span>右に回す</span>
+          <input type="text" class="block-input" value="15" size="2">
+          <span>度</span>
+        </div>
+
+        <div class="streech-block block-motion" draggable="true">
+          <span>左に回す</span>
+          <input type="text" class="block-input" value="15" size="2">
+          <span>度</span>
+        </div>
+      </div>
+
+      <div class="block-workspace">
+        <!-- ここにブロックが並んでいきます -->
+      </div>
     </section>
     
     <!-- 右側：ステージと各種アセットの管理マネージャー -->
@@ -34,21 +66,17 @@
       <!-- ステージヘッダー（コントロール群の配置） -->
       <div class="stage-header">
         <div class="control-bar">
-          <!-- 実行 (flag.svg) -->
+          <!-- 実行 (./flag.svg) -->
           <button id="run-btn" class="control-btn" title="プロジェクトを実行">
             <img src="./flag.svg" alt="Run" class="control-img">
           </button>
-          <!-- 一時停止 (stop2.svg) -->
+          <!-- 一時停止 (🛠️ ./stop2.svg に修正) -->
           <button id="pause-btn" class="control-btn" title="一時停止">
             <img src="./stop2.svg" alt="Pause" class="control-img">
           </button>
-          <!-- 完全停止 (stop.svg) -->
+          <!-- 完全停止 (🛠️ ./stop.svg に修正) -->
           <button id="stop-btn" class="control-btn" title="完全に停止">
             <img src="./stop.svg" alt="Stop" class="control-img">
-          </button>
-          <!-- デバッグ (debug.svg) -->
-          <button id="debug-btn" class="control-btn" title="デバッグモード起動">
-            <img src="./debug.svg" alt="Debug" class="control-img debug-image">
           </button>
         </div>
       </div>
@@ -96,14 +124,6 @@
 
     </section>
   </div>
-
-  <!-- Blockly表示用の定義 -->
-  <xml id="toolbox" style="display: none">
-    <category name="動き" color="#4C97FF"></category>
-    <category name="見た目" color="#9966FF"></category>
-    <category name="音" color="#D65CD6"></category>
-    <category name="制御" color="#FFAB19"></category>
-  </xml>
 
   <script type="module" src="./main.js"></script>
 </body>
