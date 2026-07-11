@@ -9,18 +9,6 @@ window.addEventListener('DOMContentLoaded', () => {
       zoom: { controls: true, wheel: true, startScale: 0.85, maxScale: 2, minScale: 0.4 }
     });
 
-    const loadingScreen = document.getElementById('loading-screen');
-    const block1 = document.getElementById('load-block-1');
-    const block2 = document.getElementById('load-block-2');
-
-    if (block1 && block2 && loadingScreen) {
-      setTimeout(() => { block1.classList.add('drop'); }, 300);
-      setTimeout(() => { block2.classList.add('drop'); }, 700);
-      setTimeout(() => { loadingScreen.classList.add('fade-out'); }, 1300);
-    } else if (loadingScreen) {
-      loadingScreen.classList.add('fade-out');
-    }
-
     const runBtn = document.getElementById('run-btn');
     const pauseBtn = document.getElementById('pause-btn');
     const stopBtn = document.getElementById('stop-btn');
@@ -70,9 +58,5 @@ window.addEventListener('DOMContentLoaded', () => {
 
   } catch (error) {
     console.error("Initialization Error:", error);
-    const fallbackScreen = document.getElementById('loading-screen');
-    if (fallbackScreen) {
-      fallbackScreen.classList.add('fade-out');
-    }
   }
 });
