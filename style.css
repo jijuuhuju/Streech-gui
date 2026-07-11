@@ -54,19 +54,13 @@ header { height: 48px; background: #00d631; padding: 0 12px; display: flex; alig
 #stage-area { width: 458px; height: 361px; background: white; border: 1px solid #d9d9d9; border-radius: 4px; display: flex; align-items: center; justify-content: center; position: relative; box-shadow: 0px 1px 3px rgba(0,0,0,0.05); }
 #canvas-mock { width: 100%; height: 100%; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 
-/* 🛠️ 【新設】キャラクターアセットとネームバッジのコンテナスタイル */
 #active-sprite-container { display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; width: auto; height: auto; }
 
-/* 🛠️ スプライト1の見た目設定：本物の画像を表示 */
 .view-sprite1 .sprite-image { width: 96px; height: 96px; object-fit: contain; display: block; }
-
-/* 🛠️ スプライト2の見た目設定：そのまま（点線の箱）のモック外観を維持 */
-.view-sprite2 .sprite-image { display: none; } /* 画像を隠す */
+.view-sprite2 .sprite-image { display: none; }
 .view-sprite2 { width: 64px; height: 64px; border: 1.5px dashed #4c97ff; border-radius: 4px; background: rgba(76, 151, 255, 0.05); color: #4c97ff; }
 
-/* 🛠️ キャラクターの真上に浮かび上がる洗練された半透明の名前バッジ */
 .sprite-name-badge { position: absolute; top: -24px; background: rgba(15, 23, 42, 0.55); color: white; padding: 2px 8px; border-radius: 12px; font-size: 0.65rem; font-weight: bold; letter-spacing: 0.5px; white-space: nowrap; backdrop-filter: blur(2px); box-shadow: 0 2px 4px rgba(0,0,0,0.1); pointer-events: none; text-align: center; }
-/* スプライト2の時はバッジの配置を中央に落とし込むスタイル調整 */
 .view-sprite2 .sprite-name-badge { position: static; background: none; color: #4c97ff; backdrop-filter: none; box-shadow: none; padding: 0; font-size: 0.7rem; }
 
 #asset-manager { flex: 1; background: white; border: 1px solid #d9d9d9; border-radius: 4px; display: flex; flex-direction: column; overflow: hidden; }
