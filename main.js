@@ -11,7 +11,6 @@ window.addEventListener('DOMContentLoaded', () => {
     const inputSize = document.querySelector('.asset-info-bar .info-item:nth-child(4) .info-input');
     const inputDir = document.querySelector('.asset-info-bar .info-item:nth-child(5) .info-input');
 
-    // 🛠️ 新しいアセットコンテナと半透明バッジの要素を取得
     const spriteContainer = document.getElementById('active-sprite-container');
     const nameBadge = document.querySelector('.sprite-name-badge');
 
@@ -21,7 +20,6 @@ window.addEventListener('DOMContentLoaded', () => {
       input.style.pointerEvents = 'auto';
     });
 
-    // 🛠️ 名前のリアルタイム更新処理（半透明バッジと連動）
     if (inputName) {
       inputName.addEventListener('input', (e) => {
         const newName = e.target.value;
@@ -98,7 +96,6 @@ window.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 🛠️ スプライトカード切り替え時の見た目出し分けロジック
     const assetCards = document.querySelectorAll('.asset-card');
     assetCards.forEach((card, index) => {
       card.addEventListener('click', () => {
@@ -109,12 +106,11 @@ window.addEventListener('DOMContentLoaded', () => {
         if (inputName) inputName.value = cardName;
         if (nameBadge) nameBadge.textContent = cardName;
 
-        // 🛠️ インデックス（順番）に応じて、スプライト1（画像）とスプライト2（点線モック）の表示スタイルを切り替える
         if (spriteContainer) {
           if (index === 0) {
-            spriteContainer.className = 'view-sprite1'; // スプライト1の見た目（画像＋半透明バッジ）
+            spriteContainer.className = 'view-sprite1';
           } else {
-            spriteContainer.className = 'view-sprite2'; // スプライト2の見た目（従来の点線枠）
+            spriteContainer.className = 'view-sprite2';
           }
         }
       });
