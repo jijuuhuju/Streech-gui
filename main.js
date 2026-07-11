@@ -1,18 +1,50 @@
-import * as Blockly from 'blockly';
-
 window.addEventListener('DOMContentLoaded', () => {
   try {
-    const workspace = Blockly.inject('blocklyDiv', {
-      toolbox: document.getElementById('toolbox'),
-      grid: { space: 20, length: 1, colour: '#e0e0e0', snap: true },
-      trashcan: true,
-      zoom: { controls: true, wheel: true, startScale: 0.85, maxScale: 2, minScale: 0.4 }
-    });
-
     const runBtn = document.getElementById('run-btn');
     const pauseBtn = document.getElementById('pause-btn');
     const stopBtn = document.getElementById('stop-btn');
     const debugBtn = document.getElementById('debug-btn');
+
+    const inputName = document.querySelector('.asset-info-bar .info-item:nth-child(1) .info-input');
+    const inputX = document.querySelector('.asset-info-bar .info-item:nth-child(2) .info-input');
+    const inputY = document.querySelector('.asset-info-bar .info-item:nth-child(3) .info-input');
+    const inputSize = document.querySelector('.asset-info-bar .info-item:nth-child(4) .info-input');
+    const inputDir = document.querySelector('.asset-info-bar .info-item:nth-child(5) .info-input');
+
+    const stageSprite = document.querySelector('.sprite-mock-cat');
+
+    const allInputs = document.querySelectorAll('.asset-info-bar .info-input');
+    allInputs.forEach(input => {
+      input.removeAttribute('readonly');
+      input.style.pointerEvents = 'auto';
+    });
+
+    if (inputName) {
+      inputName.addEventListener('input', (e) => {
+        const newName = e.target.value;
+        if (stageSprite) stageSprite.textContent = newName;
+        const currentActiveCard = document.querySelector('.asset-card.active span');
+        if (currentActiveCard) currentActiveCard.textContent = newName;
+      });
+    }
+
+    if (inputX || inputY || inputSize || inputDir) {
+      const updateSpriteStyle = () => {
+        if (!stageSprite) return;
+        const x = inputX ? inputX.value : 0;
+        const y = inputY ? inputY.value : 0;
+        const size = inputSize ? inputSize.value : 100;
+        const dir = inputDir ? inputDir.value : 90;
+
+        stageSprite.style.transform = `scale(${size / 100})`;
+        console.log(`スプライト状態更新 - X: ${x}, Y: ${y}, 大きさ: ${size}%, 向き: ${dir}度`);
+      };
+
+      if (inputX) inputX.addEventListener('input', updateSpriteStyle);
+      if (inputY) inputY.addEventListener('input', updateSpriteStyle);
+      if (inputSize) inputSize.addEventListener('input', updateSpriteStyle);
+      if (inputDir) inputDir.addEventListener('input', updateSpriteStyle);
+    }
 
     function resetButtons() {
       if (runBtn) runBtn.classList.remove('active');
@@ -53,6 +85,10 @@ window.addEventListener('DOMContentLoaded', () => {
       card.addEventListener('click', () => {
         assetCards.forEach(c => c.classList.remove('active'));
         card.classList.add('active');
+
+        const cardName = card.querySelector('span').textContent;
+        if (inputName) inputName.value = cardName;
+        if (stageSprite) stageSprite.textContent = cardName;
       });
     });
 
