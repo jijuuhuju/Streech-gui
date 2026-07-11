@@ -31,19 +31,26 @@ window.addEventListener('DOMContentLoaded', () => {
     if (inputX || inputY || inputSize || inputDir) {
       const updateSpriteStyle = () => {
         if (!stageSprite) return;
-        const x = inputX ? inputX.value : 0;
-        const y = inputY ? inputY.value : 0;
-        const size = inputSize ? inputSize.value : 100;
-        const dir = inputDir ? inputDir.value : 90;
+        const x = inputX && inputX.value !== '' ? parseFloat(inputX.value) : 0;
+        const y = inputY && inputY.value !== '' ? parseFloat(inputY.value) : 0;
+        const size = inputSize && inputSize.value !== '' ? parseFloat(inputSize.value) : 100;
+        const dir = inputDir && inputDir.value !== '' ? parseFloat(inputDir.value) : 90;
 
-        stageSprite.style.transform = `scale(${size / 100})`;
-        console.log(`スプライト状態更新 - X: ${x}, Y: ${y}, 大きさ: ${size}%, 向き: ${dir}度`);
+        const translateX = x;
+        const translateY = -y;
+        const scale = size / 100;
+        const rotateDeg = dir - 90;
+
+        stageSprite.style.transform = `translate(${translateX}px, ${translateY}px) scale(${scale}) rotate(${rotateDeg}deg)`;
+        stageSprite.style.transition = 'transform 0.1s ease-out';
       };
 
       if (inputX) inputX.addEventListener('input', updateSpriteStyle);
       if (inputY) inputY.addEventListener('input', updateSpriteStyle);
       if (inputSize) inputSize.addEventListener('input', updateSpriteStyle);
       if (inputDir) inputDir.addEventListener('input', updateSpriteStyle);
+      
+      updateSpriteStyle();
     }
 
     function resetButtons() {
@@ -77,6 +84,14 @@ window.addEventListener('DOMContentLoaded', () => {
     if (stopBtn) {
       stopBtn.addEventListener('click', () => {
         resetButtons();
+        if (inputX) inputX.value = 0;
+        if (inputY) inputY.value = 0;
+        if (inputSize) inputSize.value = 100;
+        if (inputDir) inputDir.value = 90;
+        
+        if (stageSprite) {
+          stageSprite.style.transform = `translate(0px, 0px) scale(1) rotate(0deg)`;
+        }
       });
     }
 
