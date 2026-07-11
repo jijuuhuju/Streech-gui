@@ -21,14 +21,13 @@
     
     <div class="header-right">
       <button id="debug-btn" class="nav-debug-btn" title="デバッグモード起動">
-        <!-- 🛠️ 大文字の Debug.svg に正確に修正 -->
         <img src="./Debug.svg" alt="Debug" class="nav-debug-img">
         <span>デバッグ</span>
       </button>
     </div>
   </header>
 
-  <!-- メインエディタ領域（本家Scratchと全く同じレイアウト構造） -->
+  <!-- メインエディタ領域（本家Scratchと全く同じ3分割レイアウト） -->
   <div id="main-container">
     
     <!-- 🧱 ブロックプログラミングエリア -->
@@ -52,7 +51,6 @@
         </div>
 
         <div class="streech-block block-motion" draggable="true">
-          <!-- 🛠️ ブロック内の矢印アイコンも大文字の Stop2.svg に修正 -->
           <img src="./Stop2.svg" class="block-arrow-icon" style="transform: rotate(90deg); filter: brightness(0) invert(1); width:12px; height:12px; margin-right:2px;">
           <input type="text" class="block-input" value="15" size="2">
           <span>度回す</span>
@@ -67,7 +65,11 @@
 
       <!-- 中央：広大なワークスペース領域 -->
       <div class="block-workspace">
-        <div class="workspace-empty-text">ここにブロックをドラッグして組み立てます</div>
+        <!-- 🛠️ エディタ起動時に最初から自動で置かれている「緑の旗が押されたとき」ブロック -->
+        <div class="streech-block block-event hat-block" style="position: absolute; top: 40px; left: 40px;">
+          <img src="./flag.svg" alt="Flag" style="width: 16px; height: 16px; margin-right: 4px;">
+          <span>が押されたとき</span>
+        </div>
       </div>
     </section>
     
@@ -77,15 +79,12 @@
       <!-- ステージヘッダー -->
       <div class="stage-header">
         <div class="control-bar">
-          <!-- 実行 (flag.svg) -->
           <button id="run-btn" class="control-btn" title="プロジェクトを実行">
             <img src="./flag.svg" alt="Run" class="control-img">
           </button>
-          <!-- 一時停止 (🛠️ 大文字の Stop2.svg に修正) -->
           <button id="pause-btn" class="control-btn" title="一時停止">
             <img src="./Stop2.svg" alt="Pause" class="control-img">
           </button>
-          <!-- 完全停止 (🛠️ 大文字の Stop.svg に修正) -->
           <button id="stop-btn" class="control-btn" title="完全に停止">
             <img src="./Stop.svg" alt="Stop" class="control-img">
           </button>
