@@ -65,7 +65,6 @@
 
       <!-- 中央：広大なワークスペース領域 -->
       <div class="block-workspace">
-        <!-- 🛠️ エディタ起動時に最初から自動で置かれている「緑の旗が押されたとき」ブロック -->
         <div class="streech-block block-event hat-block" style="position: absolute; top: 40px; left: 40px;">
           <img src="./flag.svg" alt="Flag" style="width: 16px; height: 16px; margin-right: 4px;">
           <span>が押されたとき</span>
@@ -94,8 +93,12 @@
       <!-- 右上：ステージエリア（4:3サイズ比） -->
       <div id="stage-area">
         <div id="canvas-mock">
-          <div class="sprite-mock-cat">
-            Sprite1
+          <!-- 🛠️ キャラクター表示エリア（初期状態はスプライト1用のCSSを適用） -->
+          <div id="active-sprite-container" class="view-sprite1">
+            <!-- スプライト1の時だけ表示される本物の画像 -->
+            <img src="./Streech nago cat-a.svg" alt="Nago Cat" class="sprite-image">
+            <!-- キャラクターの真上に重なる半透明の名前バッジ -->
+            <div class="sprite-name-badge">Sprite1</div>
           </div>
         </div>
       </div>
